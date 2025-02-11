@@ -1,0 +1,525 @@
+  /* styles.css */
+
+  /* Reset dan Global Styles */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f6f1;
+    color: #4e342e;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f6f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: opacity 10s ease;
+  }
+  
+  #preloader .loader img {
+    width: 150px;
+    height: auto;
+    animation: spin 2s linear infinite;
+  }
+  
+  #preloader .loader h2 {
+    margin-top: 20px;
+    color: #6f4e37;
+    font-size: 1.5em;
+    animation: fadeIn 2s infinite;
+  }
+  
+  /* Animasi Logo Berputar */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Animasi Fade In Teks */
+  @keyframes fadeIn {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  /* Header */
+  header {
+    position: relative;
+    background: url('img/Background-Kopi.jpg') no-repeat center center/cover;
+    height: 60vh;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  header h1 {
+    font-size: 4em;
+    margin: 0;
+    z-index: 1;
+    animation: slideIn 1s forwards;
+  }
+  
+  header p {
+    font-size: 1.5em;
+    z-index: 1;
+    animation: fadeInHeader 2s forwards;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeInHeader {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Section Pengenalan */
+  #intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 60px 5%;
+    background-color: #FFF4E6;
+  }
+  
+  .intro-content, .intro-animation {
+    flex: 1 1 300px;
+    min-width: 300px;
+  }
+  
+  .intro-content {
+    max-width: 600px;
+  }
+  
+  .intro-content h2 {
+    font-size: 2.5em;
+    color: #6f4e37;
+    margin-bottom: 20px;
+  }
+  
+  .intro-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .explore-button {
+    padding: 15px 30px;
+    background-color: #d7a86e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .explore-button:hover {
+    background-color: #c69566;
+    transform: translateY(-3px);
+  }
+  
+  .intro-animation {
+    text-align: center;
+  }
+  
+  .intro-animation img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Sections */
+  section {
+    padding: 60px 5%;
+  }
+  
+  section h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #5d4037;
+  }
+  
+  section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  /* Animasi Scroll Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Section Wilayah */
+  #regions {
+    background-color: #FFD6A3;
+  }
+  
+  .map-container {
+    position: relative;
+    text-align: center;
+  }
+  
+  .map-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Section Varietas Kopi */
+  #varieties .variety-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #FFF4E6;
+  }
+
+  #varieties {
+    background-color: #FFF4E6;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    flex: 1 1 calc(33.333% - 40px);
+    margin: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    min-width: 280px;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card h3 {
+    margin: 15px 0 5px;
+    font-size: 1.5em;
+    color: #6f4e37;
+  }
+  
+  .card p {
+    margin: 0 15px 15px;
+    font-size: 1em;
+    color: #795548;
+  }
+  
+  /* Section Kearifan Lokal */
+  #culture {
+    background-color: #FFE6CC;
+  }
+  
+  #culture .stories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .story {
+    background-color: #fff;
+    flex: 1 1 calc(50% - 40px);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    min-width: 280px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .story:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .story img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .story h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: #ad1457;
+  }
+  
+  .story p {
+    font-size: 1em;
+    color: #5d4037;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #4B2E2A;
+    color: #fff;
+    text-align: center;
+    padding: 20px 5%;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1em;
+  }
+
+  /* Timeline Sejarah */
+
+  #sejarah {
+    background-color: #FFE6CC;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #000;
+    left: 50%;
+    margin-left: -1px;
+  }
+  .timeline-event {
+    position: relative;
+    width: 50%;
+    padding: 10px 40px;
+    box-sizing: border-box;
+    display: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  .timeline-event.show {
+    display: block;
+    opacity: 1;
+  }
+  .timeline-event h3 {
+    margin-top: 0;
+  }
+  .timeline-event:nth-child(odd) {
+    left: 0;
+  }
+  .timeline-event:nth-child(even) {
+    left: 50%;
+  }
+  .timeline-event:nth-child(odd):before,
+  .timeline-event:nth-child(even):before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border: 2px solid #dd6b20;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .timeline-event:nth-child(odd):before {
+    right: -6px;
+  }
+  .timeline-event:nth-child(even):before {
+    left: -6px;
+  }
+  .show-more {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+    color: #dd6b20;
+    text-decoration: underline;
+  }
+
+  #kebiasaanmodern {
+      text-align: center;
+      padding: 20px;
+      background-color: #FFD6A3;
+  }
+
+  #kebiasaanmodern h2 {
+      font-size: 24px;
+  }
+
+  #kebiasaanmodern .content {
+      list-style: none;
+      padding: 0;
+      font-size: 18px;
+      margin: 0;
+  }
+
+  #kebiasaanmodern .content-summary p, #kebiasaanmodern .content-details ul {
+      margin: 10px 0;
+  }
+
+  #kebiasaanmodern .content-details {
+      display: none;
+      opacity: 0;
+      transition: all 0.5s ease;
+  }
+
+  #kebiasaanmodern .content-details.show {
+      display: block;
+      opacity: 1;
+  }
+
+  .show-more-kebiasaan {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+    color: #dd6b20;
+    text-decoration: underline;
+  }
+
+  #polakonsumsi {
+    background-color: #FFE6CC;
+  }
+
+  #polakonsumsi h2 {
+    font-size: 24px;
+}
+
+  #polakonsumsi .content {
+      list-style: none;
+      padding: 0;
+      font-size: 18px;
+      margin: 0;
+  }
+
+  #polakonsumsi .content-summary p, #polakonsumsi .content-details ul {
+      margin: 10px 0;
+  }
+
+  #polakonsumsi .content-details {
+      display: none;
+      opacity: 0;
+      transition: all 0.5s ease;
+  }
+
+  #polakonsumsi .content-details.show {
+      display: block;
+      opacity: 1;
+  }
+
+  .show-more-polakonsumsi {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+    color: #dd6b20;
+    text-decoration: underline;
+  }
+  
+  /* Media Queries untuk Responsivitas */
+  @media (max-width: 992px) {
+    .card {
+      flex: 1 1 calc(50% - 40px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .story {
+      flex: 1 1 100%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2.5em;
+    }
+  
+    header p {
+      font-size: 1.2em;
+    }
+  
+    .intro-content, .intro-animation {
+      flex: 1 1 100%;
+    }
+  
+    #intro {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .card {
+      flex: 1 1 100%;
+    }
+  }  
+
+  @keyframes putar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    .intro-content h2 {
+      font-size: 2em;
+    }
+    .intro-content p {
+      font-size: 1em;
+    }
+    section h2 {
+      font-size: 1.8em;
+    }
+    section p {
+      font-size: 0.9em;
+    }
+    /* Sesuaikan elemen lain sesuai kebutuhan */
+  }
+  
