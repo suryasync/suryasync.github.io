@@ -246,15 +246,48 @@
     color: #795548;
   }
   
-  /* Section Kearifan Lokal */
-  #culture {
+  /* Section Teknik Pembuatan */
+  #technique {
     background-color: #FFE6CC;
+    padding: 20px;
   }
-  
-  #culture .stories {
+
+  #technique h2 {
+    text-align: center;
+  }
+
+  #technique .stories {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  #technique .content-details.show {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;  /* Atur jarak antara kotak */
+    opacity: 1;
+  }
+
+  #technique .story {
+    flex: 0 0 calc(50% - 20px);  /* Lebar 50% dikurangi margin */
+    margin: 10px;
+    box-sizing: border-box;
+  }
+
+  #technique .story img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .show-more-technique {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+    color: #dd6b20;
+    text-decoration: underline;
+    font-weight: bold;
   }
   
   .story {
@@ -307,7 +340,7 @@
 
   /* Timeline Sejarah */
 
-  #sejarah {
+  #history {
     background-color: #FFE6CC;
   }
 
@@ -376,39 +409,39 @@
     text-decoration: underline;
   }
 
-  #kebiasaanmodern {
+  #modernhabits {
       text-align: center;
       padding: 20px;
       background-color: #FFD6A3;
   }
 
-  #kebiasaanmodern h2 {
+  #modernhabits h2 {
       font-size: 24px;
   }
 
-  #kebiasaanmodern .content {
+  #modernhabits .content {
       list-style: none;
       padding: 0;
       font-size: 18px;
       margin: 0;
   }
 
-  #kebiasaanmodern .content-summary p, #kebiasaanmodern .content-details ul {
+  #modernhabits .content-summary p, #modernhabits .content-details ul {
       margin: 10px 0;
   }
 
-  #kebiasaanmodern .content-details {
+  #modernhabits .content-details {
       display: none;
       opacity: 0;
       transition: all 0.5s ease;
   }
 
-  #kebiasaanmodern .content-details.show {
+  #modernhabits .content-details.show {
       display: block;
       opacity: 1;
   }
 
-  .show-more-kebiasaan {
+  .show-more-habits {
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -417,43 +450,169 @@
     text-decoration: underline;
   }
 
-  #polakonsumsi {
+  #consumtionpatterns {
     background-color: #FFE6CC;
   }
 
-  #polakonsumsi h2 {
+  #consumtionpatterns h2 {
     font-size: 24px;
 }
 
-  #polakonsumsi .content {
+  #consumtionpatterns .content {
       list-style: none;
       padding: 0;
       font-size: 18px;
       margin: 0;
   }
 
-  #polakonsumsi .content-summary p, #polakonsumsi .content-details ul {
+  #consumtionpatterns .content-summary p, #consumtionpatterns .content-details ul {
       margin: 10px 0;
   }
 
-  #polakonsumsi .content-details {
+  #consumtionpatterns .content-details {
       display: none;
       opacity: 0;
       transition: all 0.5s ease;
   }
 
-  #polakonsumsi .content-details.show {
+  #consumtionpatterns .content-details.show {
       display: block;
       opacity: 1;
   }
 
-  .show-more-polakonsumsi {
+  .show-more-consumtionpatterns {
     display: block;
     margin: 20px auto;
     text-align: center;
     cursor: pointer;
     color: #dd6b20;
     text-decoration: underline;
+  }
+
+/* Kolom Komentar */
+.comment-section {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #FFF4E6; /* Warna latar belakang tematik kopi */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #3e2723; /* Warna teks tematik kopi */
+}
+
+.comment-section h2 {
+  text-align: center;
+  color: #3e2723; /* Warna judul tematik kopi */
+}
+
+.comments-container {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: #d7ccc8; /* Warna latar belakang komentar tematik kopi */
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border-left: 5px solid #8d6e63; /* Garis tepi tematik kopi */
+  transition: all 0.3s ease;
+}
+
+.comment:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  background-color: #d7ccc8; /* Warna latar belakang form tematik kopi */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #8d6e63;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ffffff; /* Warna latar belakang input */
+  transition: all 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  border-color: #795548; /* Warna border fokus */
+}
+
+form button {
+  background-color: #795548; /* Warna tombol tematik kopi */
+  color: #ffffff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #5d4037;
+}
+
+/* Responsif untuk perangkat kecil */
+@media screen and (max-width: 600px) {
+  .comment-section {
+      padding: 10px;
+  }
+
+  form input, form textarea {
+      padding: 10px;
+  }
+
+  form button {
+      padding: 10px;
+  }
+}
+
+  /* Anggota Kelompok */
+  .containermember {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  .member {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .member img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .member p {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  @media (max-width: 767px) {
+    .containermember {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .containermember::after {
+      content: '';
+      flex-grow: 1;
+    }
+    .member:nth-last-child(1) {
+      grid-column: span 2;
+      text-align: center;
+    }
+  }
+  @media (min-width: 768px) {
+  .containermember {
+    grid-template-columns: repeat(3, 1fr);
+  }
   }
   
   /* Media Queries untuk Responsivitas */
@@ -523,3 +682,24 @@
     /* Sesuaikan elemen lain sesuai kebutuhan */
   }
   
+  @media screen and (max-width: 600px) {
+    #technique .story {
+      flex: 0 0 100%;
+    }
+  }  
+
+  /* Footer styling */
+  footer {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background-color: #333;
+  }
+  footer p, footer a {
+    font-size: 1rem;
+  }
+  @media (max-width: 767px) {
+    footer p, footer a {
+      font-size: 0.75rem;
+    }
+  }
