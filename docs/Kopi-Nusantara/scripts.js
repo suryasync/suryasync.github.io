@@ -1,11 +1,12 @@
 /* scripts.js */
 
-// Menghilangkan Preloader setelah Halaman Dimuat
-window.addEventListener('load', function(){
+  // Menghilangkan Preloader setelah Halaman Dimuat
+  window.addEventListener('load', function(){
     const preloader = document.getElementById('preloader');
     preloader.style.opacity = '0';
     setTimeout(function(){
-      preloader.style.display = 'none';
+        preloader.style.display = 'none';
+        document.body.style.overflowX = 'hidden'; // Tambahkan ini
     }, 1000); // Sesuaikan dengan durasi transisi opacity
   });
   
@@ -59,8 +60,8 @@ window.addEventListener('load', function(){
   
   // Showmore Kebiasaan Kopi di Era Modern
 
-  document.querySelector('.show-more-kebiasaan').addEventListener('click', function() {
-    var details = document.querySelector('#kebiasaanmodern .content-details');
+  document.querySelector('.show-more-habits').addEventListener('click', function() {
+    var details = document.querySelector('#modernhabits .content-details');
     var showMoreText = this;
 
     if (showMoreText.textContent === 'Tampilkan lebih lengkap') {
@@ -74,8 +75,8 @@ window.addEventListener('load', function(){
 
   // Showmore Pola Konsumsi di Kedai Kopi
 
-  document.querySelector('.show-more-polakonsumsi').addEventListener('click', function() {
-    var details = document.querySelector('#polakonsumsi .content-details');
+  document.querySelector('.show-more-consumtionpatterns').addEventListener('click', function() {
+    var details = document.querySelector('#consumtionpatterns .content-details');
     var showMoreText = this;
 
     if (showMoreText.textContent === 'Tampilkan lebih lengkap') {
@@ -86,3 +87,51 @@ window.addEventListener('load', function(){
         showMoreText.textContent = 'Tampilkan lebih lengkap';
     }
   });
+
+  // Showmore Teknik Pembuatan
+
+  document.querySelector('.show-more-technique').addEventListener('click', function() {
+    var details = document.querySelector('#technique .content-details');
+    var showMoreText = this;
+  
+    details.classList.toggle('show');
+    showMoreText.textContent = details.classList.contains('show') ? 'Sembunyikan' : 'Tampilkan lebih lengkap';
+  });
+
+  // Komentar
+
+  document.addEventListener('DOMContentLoaded', function() {
+    fetchComments();
+});
+
+let submitted = false;
+document.getElementById('commentForm').addEventListener('submit', function(e) {
+    setTimeout(function() {
+        if (submitted) {
+            fetchComments();
+            document.getElementById('commentForm').reset();
+            alert('Komentar berhasil dikirim!');
+            submitted = false;
+        }
+    }, 1000);
+});
+
+function fetchComments() {
+    fetch('https://script.google.com/macros/s/AKfycbzZyC0l_LvDOI_u7ZbIWc1D_ujT89RY4WqMXLzcKsdnfT_y8YnDpdLlV1EioJScr_Ul1w/exec')
+    .then(response => response.json())
+    .then(data => {
+        const commentsContainer = document.getElementById('comments');
+        commentsContainer.innerHTML = '';
+        data.comments.forEach(comment => {
+            const commentElement = document.createElement('div');
+            commentElement.className = 'comment';
+            commentElement.innerHTML = `
+                <p><strong>${comment.nama}</strong></p>
+                <p>${comment.komentar}</p>
+            `;
+            commentsContainer.appendChild(commentElement);
+        });
+    });
+}
+
+setInterval(fetchComments, 5000);
