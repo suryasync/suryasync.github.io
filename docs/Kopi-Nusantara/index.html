@@ -8,12 +8,17 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <link rel="icon" type="img/icon" href="img/Logo-Kopi.png">
   <style>
-    body {
-        overflow-x: hidden;
-    }
+  html, body {
+      overflow-x: hidden;
+  }
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="backsound.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen 
+  </audio>
+
   <div id="preloader">
     <div class="loader">
       <div style="text-align: center;">
@@ -32,8 +37,8 @@
   <section id="intro">
     <div class="intro-content">
       <h2 style="text-align: center; font-size: calc(16px + 1.5vw);">Lebih dari Sekedar Kopi Susu</h2>
-      <p style="text-align: justify;">Kopi, minuman yang dicintai dunia, dibuat dari ekstrak biji kopi yang dihaluskan menjadi bubuk. Berasal dari Afrika, kopi menyebar ke Arab, Eropa, dan akhirnya dibawa ke Indonesia oleh Belanda. Sejak saat itu, kopi telah menjadi favorit global.</p>
-      <a href="#sejarah" class="explore-button">Jelajahi Sekarang</a>
+      <p style="text-align: justify;">Kopi, minuman yang dicintai di seluruh dunia, berasal dari ekstrak biji kopi yang dihaluskan. Awalnya dari Afrika, kopi menyebar ke Arab, Eropa, dan akhirnya dibawa ke Indonesia oleh Belanda. Sejak itu, kopi telah menjadi favorit global.</p>
+      <a href="#history" class="explore-button">Jelajahi Sekarang</a>
     </div>
     <div class="intro-animation">
         <img src="img/Logo-Kopi.png" alt="Animasi Biji Kopi" style="animation: putar 4s linear infinite;">
@@ -41,7 +46,7 @@
   </section>
 
   <!-- Bagian Sejarah -->
-  <section id="sejarah">
+  <section id="history">
     <h2>Sejarah Kopi di Nusantara</h2>
     <div class="timeline">
       <div class="timeline-event show">
@@ -64,6 +69,10 @@
           <h3>1900-an</h3>
           <p>Industri kopi Indonesia berkembang pesat, menjadikan Indonesia salah satu produsen kopi terbesar di dunia.</p>
       </div>
+      <div class="timeline-event">
+          <h3>Masa kini</h3>
+          <p>Kopi menjadi minuman yang diminum sambil bersosialisasi, mengerjakan tugas, menyusun laporan, bahkan menjadi karya seni.</p>
+      </div>
     </div>
     <span class="show-more">Tampilkan lebih lengkap</span>
   </section>  
@@ -77,7 +86,7 @@
   </section>
 
   <!-- Bagian Kebiasaan Kopi di Era Modern -->
-  <section id="kebiasaanmodern" style="text-align: center;">
+  <section id="modernhabits" style="text-align: center;">
     <h2 style="font-size: 1.5em; line-height: 1.2em;">Kebiasaan Kopi di Era Modern</h2>
     <div class="content" style="margin: 0 auto; max-width: 600px;">
         <div class="content-summary">
@@ -105,11 +114,11 @@
             <p style="font-size: 1em; line-height: 1.5em;">Kopi telah menjadi bagian dari gaya hidup di era modern ini.</p>
         </div>
     </div>
-    <span class="show-more-kebiasaan" style="font-size: 1em; line-height: 1.5em;">Tampilkan lebih lengkap</span>
+    <span class="show-more-habits" style="font-size: 1em; line-height: 1.5em;">Tampilkan lebih lengkap</span>
   </section>
 
   <!-- Bagian Pola Konsumsi di Kedai Kopi -->
-   <section id="polakonsumsi" style="text-align: center;">
+   <section id="consumtionpatterns" style="text-align: center;">
     <h2 style="font-size: 1.5em; line-height: 1.2em;">Pola Konsumsi di Kedai Kopi</h2>
     <div class="content" style="margin: 0 auto; max-width: 600px;">
         <div class="content-summary">
@@ -118,14 +127,14 @@
         <div class="content-details">
             <h3 style="font-size: 1.2em; line-height: 1.2em;">Aktivitas yang paling sering dilakukan di kedai kopi meliputi :</h3>
             <ul style="list-style-position: inside; text-align: left; font-size: 1em; line-height: 1.5em;">
-                <li>Nongkrong</li>
+                <li>Bersosialisasi</li>
                 <li>Berdiskusi</li>
                 <li>Rapat</li>
                 <li>Bersantai bersama</li>
             </ul>
         </div>
     </div>
-    <span class="show-more-polakonsumsi" style="font-size: 1em; line-height: 1.5em;">Tampilkan lebih lengkap</span>
+    <span class="show-more-consumtionpatterns" style="font-size: 1em; line-height: 1.5em;">Tampilkan lebih lengkap</span>
    </section>
 
   <!-- Bagian Varietas Kopi -->
@@ -137,12 +146,12 @@
         <img src="img/Kopi-Toraja.png" alt="Kopi Toraja">
         <h3>Kopi Toraja</h3>
         <p style="text-align: left;">
-          <b>Origin :</b> Mamasa, Toraja, South Sulawesi <br>
-          <b>Farm :</b> - <br>
-          <b>Processing :</b> Washed Wet Hulled <br>
-          <b>Variety :</b> Lini S & S795 <br>
-          <b>Altitude :</b> 1200-1400 MASL <br>
-          <b>Taste notes :</b> Figs, Berry, Spice & Sweet Orange <br>
+          <b>Origin : </b>Mamasa, Toraja, South Sulawesi<br>
+          <b>Farm : </b>-<br>
+          <b>Processing :</b> Washed Wet Hulled<br>
+          <b>Variety : </b>Lini S & S795<br>
+          <b>Altitude : </b>1200-1400 MASL<br>
+          <b>Taste notes : </b>Figs, Berry, Spice & Sweet Orange<br>
           <center><button style="background-color: #dd6b20; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;" onclick="window.open('https://fugolcoffeeroasters.com/id/products/toraja-mamasa-figs?_pos=1&_sid=f39c56758&_ss=r', '_blank')"><b>Lihat Selengkapnya</b></button></center>
         </p>
       </div>
@@ -151,12 +160,12 @@
         <img src="img/Kopi-Kintamani.png" alt="Kopi Kintamani">
         <h3>Kopi Kintamani</h3>
         <p style="text-align: left;">
-            <b>Origin :</b> Gunungbau Village, Kintamani, Bali <br>
-            <b>Farm :</b> Curtina Coffee <br>
-            <b>Processing :</b> Natural Kismis <br>
-            <b>Variety :</b> USDA, Kopyol <br>
-            <b>Altitude :</b> 1100-1300 MASL <br>
-            <b>Taste notes :</b> Pomelo, Lemon, Brown Sugar <br>
+            <b>Origin : </b>Gunungbau Village, Kintamani, Bali<br>
+            <b>Farm : </b>Curtina Coffee<br>
+            <b>Processing : </b>Natural Kismis<br>
+            <b>Variety : </b>USDA, Kopyol<br>
+            <b>Altitude : </b>1100-1300 MASL<br>
+            <b>Taste notes : </b>Pomelo, Lemon, Brown Sugar<br>
             <center><button style="background-color: #dd6b20; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;" onclick="window.open('https://fugolcoffeeroasters.com/id/products/bali-natural-kismis?_pos=2&_sid=a966269e1&_ss=r', '_blank')"><b>Lihat Selengkapnya</b></button></center>
         </p>
       </div>    
@@ -165,12 +174,12 @@
         <img src="img/Kopi-Kamojang.png" alt="Kopi Kamojang">
         <h3>Kopi Kamojang</h3>
         <p style="text-align: left;">
-          <b>Origin :</b> Kamojang, West Java, Indonesia <br>
-          <b>Farm :</b> Wanoja Cooperative <br>
-          <b>Processing :</b> Wine <br>
-          <b>Variety :</b> Typica, Kartika, Lini S & Sigararutang <br>
-          <b>Altitude :</b> 1500 MASL <br>
-          <b>Taste notes :</b> Red Wine, Red Apple <br>
+          <b>Origin : </b>Kamojang, West Java, Indonesia<br>
+          <b>Farm : </b>Wanoja Cooperative<br>
+          <b>Processing : </b>Wine<br>
+          <b>Variety : </b>Typica, Kartika, Lini S & Sigararutang<br>
+          <b>Altitude : </b>1500 MASL<br>
+          <b>Taste notes : </b>Red Wine, Red Apple<br>
           <center><button style="background-color: #dd6b20; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;" onclick="window.open('https://fugolcoffeeroasters.com/id/products/sunda-red-wine?_pos=1&_sid=90d815568&_ss=r', '_blank')"><b>Lihat Selengkapnya</b></button></center>
         </p>
       </div>
@@ -178,37 +187,223 @@
     </div>
   </section>
 
-  <!-- Bagian Kearifan Lokal -->
-  <section id="culture">
-    <h2>Kearifan Lokal dan Tradisi Kopi</h2>
-    <p>Kopi bukan sekadar minuman, tapi juga perekat sosial dan warisan budaya yang kaya.</p>
-    <div class="stories">
-      <!-- Cerita 1 -->
+<!-- Bagian Teknik Pembuatan -->
+  <section id="technique">
+    <h2>Teknik Pembuatan</h2>
+    <p>Berikut beberapa teknik berdasarkan eksperimen yang kami lakukan. Anda dapat bereksperimen sendiri dengan mengatur beberapa faktor.</p>
+    
+    <!-- Konten yang akan ditampilkan atau disembunyikan -->
+    <div class="stories content-details">
+      
+      <!-- Teknik 1 -->
       <div class="story">
-        <img src="images/ritual-aceh.jpg" alt="Ritual Kopi Aceh">
-        <h3>Ritual Minum Kopi di Aceh</h3>
-        <p>Di Aceh, tradisi minum kopi di warung telah menjadi bagian dari kehidupan sehari-hari dan simbol kehangatan komunitas.</p>
+        <center><h3>Moka Pot</h3></center>
+        <center><img src="img/Moka-Pot.jpg" alt="Moka Pot" style="max-width: 50%; height: auto;"></center>
+        <p style="text-align: justify;">Moka pot adalah teknik menyeduh dengan melawan arah gravitasi. Memanfaatkan tekanan tersebut untuk menyeduh kopi yang memiliki profil hampir mirip dengan espresso.</p>
+        <p style="text-align: justify;">
+          <b>a. Ukuran gilingan :</b> Medium-fine<br>
+          <b>b. Suhu :</b> 90 derajat Celcius<br>
+          <b>c. Rasio :</b> 1:10<br>
+          <b>d. Teknik :</b><br>
+          <b>1.</b> Siapkan alat dan air yang sudah mencapai suhu yang sesuai.<br>
+          <b>2.</b> Masukkan air tersebut ke bagian bawah moka pot.<br>
+          <b>3.</b> Letakkan moka pot di atas kompor dengan api kecil.<br>
+          <b>4.</b> Amati moka pot, jangan biarkan mencapai suhu terlalu tinggi.<br>
+          <b>5.</b> Sajikan.<br>
+        </p>
       </div>
-      <!-- Cerita 2 -->
+      
+      <!-- Teknik 2 -->
       <div class="story">
-        <img src="images/filosofi-jawa.jpg" alt="Filosofi Kopi Jawa">
-        <h3>Filosofi Kopi di Jawa</h3>
-        <p>Kopi merepresentasikan kesederhanaan dan keramahan hati masyarakat Jawa yang selalu terbuka bagi tamu.</p>
+        <center><h3>French Press</h3></center>
+        <center><img src="img/French-Press.jpg" alt="French Press" style="max-width: 50%; height: auto;"></center>
+        <p style="text-align: justify;">French press adalah teknik immersion dengan merendam bubuk kopi lalu menekannya menggunakan sebuah alat.</p>
+        <p style="text-align: justify;">
+          <b>a. Ukuran gilingan :</b> Kasar atau medium<br>
+          <b>b. Suhu :</b> 90 derajat Celcius atau lebih<br>
+          <b>c. Rasio :</b> 1:15<br>
+          <b>d. Teknik :</b><br>
+          <b>1.</b> Siapkan alat, bubuk, dan air yang sudah mencapai suhu yang sesuai.<br>
+          <b>2.</b> Masukkan bubuk lalu air sesuai dengan rasio.<br>
+          <b>3.</b> Tutup french press dan jangan ditekan terlebih dahulu, biarkan selama 4 menit.<br>
+          <b>4.</b> Buka tutup lalu aduk perlahan dengan sendok.<br>
+          <b>5.</b> Tutup kembali dan tekan french press.<br>
+          <b>6.</b> Diamkan lagi selama 4 menit.<br>
+          <b>7.</b> Sajikan.<br>
+        </p>
       </div>
-      <!-- Tambahkan cerita lainnya sesuai kebutuhan -->
+      
+      <!-- Teknik 3 -->
+      <div class="story">
+        <center><h3>Cold Brew</h3></center>
+        <center><img src="img/Cold-Brew.jpg" alt="Cold Brew" style="max-width: 50%; height: auto;"></center>
+        <p style="text-align: justify;">Cold brew adalah teknik perendaman bubuk kopi dalam air pada suhu ruangan yang kemudian ditempatkan dalam kulkas. Teknik ini menggunakan gilingan kasar dan membutuhkan waktu perendaman selama 12 hingga 24 jam.</p>
+        <p style="text-align: justify;">
+          <b>a. Ukuran gilingan :</b> Kasar<br>
+          <b>b. Suhu :</b> Suhu ruangan<br>
+          <b>c. Rasio :</b> 1:15<br>
+          <b>d. Teknik :</b><br>
+          <b>1.</b> Siapkan alat dan bubuk kopi yang telah digiling kasar.<br>
+          <b>2.</b> Masukkan bubuk kopi ke dalam wadah, lalu tambahkan air sesuai rasio.<br>
+          <b>3.</b> Aduk perlahan hingga semua bubuk kopi terendam.<br>
+          <b>4.</b> Tutup wadah dan simpan di dalam kulkas selama 12 hingga 24 jam.<br>
+          <b>5.</b> Setelah perendaman selesai, saring kopi untuk memisahkan ampasnya.<br>
+          <b>6.</b> Sajikan kopi dingin, bisa ditambahkan es batu jika diinginkan.<br>
+        </p>
+      </div>
+      
+      <!-- Teknik 4 -->
+      <div class="story">
+        <center><h3>V60</h3></center>
+        <center><img src="img/V60.png" alt="V60" style="max-width: 50%; height: auto;"></center>
+        <p style="text-align: justify;">V60 adalah teknik penyeduhan perkolasi yang serbaguna dan dapat dikreasikan. Resep ini menghasilkan kopi dengan profil seimbang antara asam, manis, dan pahit.</p>
+        <p style="text-align: justify;">
+          <b>a. Ukuran gilingan :</b> Medium fine - kasar<br>
+          <b>b. Rasio :</b> 1:15<br>
+          <b>c. Teknik :</b><br><br>
+          <b>Fase Bloom</b><br>
+          Gunakan suhu 85-90 derajat Celsius. Tuangkan 100 ml air selama 30 detik.<br><br>
+          <b>Fase 60%</b><br>
+          Tetap gunakan suhu 85-90 derajat Celsius. Tuangkan air hingga total 300 ml dalam 1 menit 15 detik. Tuang perlahan dengan gerakan melingkar.<br><br>
+          <b>Fase Akhir</b><br>
+          Turunkan suhu menjadi 70-80 derajat Celsius. Tuangkan sisa air 100 ml secara perlahan selama 30 detik hingga V60 penuh. Aduk perlahan. Biarkan hingga total waktu penyeduhan mencapai 3 menit.<br>
+        </p>
+      </div>
+      
+      <!-- Teknik 5 -->
+      <div class="story">
+        <center><h3>V60 (Osmotic Flow)</h3></center>
+        <center><img src="img/V60-OsmoticFlow.png" alt="V60 (Osmotic Flow)" style="max-width: 50%; height: auto;"></center>
+        <p style="text-align: justify;">V60 adalah teknik penyeduhan perkolasi yang serbaguna dan dapat dikreasikan. Resep ini menghasilkan kopi dengan profil yang cenderung asam dan manis alami.</p>
+        <p style="text-align: justify;">
+          <b>a. Ukuran gilingan :</b> Medium fine - kasar<br>
+          <b>b. Rasio :</b> 1:15<br>
+          <b>c. Teknik :</b><br><br>
+          <b>Fase Bloom</b><br>
+          Gunakan suhu 90-95 derajat Celsius. Tuangkan 100 ml air (maksimal 3 kali jumlah bubuk kopi) selama 30 detik.<br><br>
+          <b>Fase 60% (Teknik Tuang Sesuai Gambar)</b><br>
+          Tetap gunakan suhu 90-95 derajat Celsius. Tuangkan air hingga total 300 ml (60% dari total air) dalam waktu sekitar 1 menit 30 detik, arahkan tuangan ke tengah kopi secara perlahan.<br><br>
+          <b>Fase Akhir</b><br>
+          Turunkan suhu menjadi 70-80 derajat Celsius. Tuangkan sisa air 100 ml secara perlahan selama 30 detik hingga V60 penuh. Aduk perlahan. Biarkan hingga total waktu penyeduhan mencapai 3 menit 15 detik.<br>
+        </p>
+      </div>
+      
+      <!-- Teknik 6 -->
+      <div class="story">
+        <center><h3>Dialing</h3></center>
+        <center><img src="img/Dialing.png" alt="Dialing" style="max-width: 50%; height: auto;"></center>
+        <p style="text-align: justify;">Pembaca dapat bereksperimen dengan kopi Nusantara seperti Kopi Aceh, Bali, atau Sumatra. Perhatikan faktor-faktor berikut dan pengaruhnya terhadap hasil akhir kopi Anda. Faktor-faktor ini telah diuji oleh penulis dengan metode perbandingan rasa.</p>
+        <p style="text-align: justify;">
+          <b>1. Temperatur</b><br>
+          <ul>
+            <li>Suhu di atas 90°C akan mengekstrak rasa pahit.</li>
+            <li>Suhu di bawah 85°C akan mengekstrak rasa asam dan manis.</li>
+            <li>Kopi dark roast dapat terekstrak pada suhu rendah, sementara light roast umumnya memerlukan suhu lebih tinggi.</li>
+          </ul>
+          <b>2. Filtrasi</b><br>
+          <ul>
+            <li>Mesh filter menghasilkan profil bold.</li>
+            <li>Paper filter menghasilkan rasa kopi yang clean. Perhatikan jenis paper filter yang digunakan.</li>
+          </ul>
+          <b>3. Agitation</b><br>
+          <ul>
+            <li>Cara menuang air penting pada metode perkolasi.</li>
+            <li>Tuangan air yang tidak merata akan menghasilkan kopi yang under-extract. Teknik kopi Osmotic menggunakan prinsip osmosis untuk ekstraksi.</li>
+          </ul>
+          <b>4. Fase Bloom</b><br>
+          <ul>
+            <li>Blooming adalah proses pengeluaran gas CO2 dari kopi.</li>
+            <li>Blooming dilakukan pada suhu relatif tinggi, sekitar 90°C ke atas.</li>
+          </ul>
+          <b>5. Fase Ekstraksi</b><br>
+          <ul>
+            <li>Perhatikan hidrolisis, bagaimana air mengekstrak molekul pada kopi.</li>
+            <li>Dissolution, pergerakan air pada bubuk kopi.</li>
+            <li>Diffusion, tingkat konsentrasi air dan kopi.</li>
+          </ul>
+          <b>6. Waktu Kontak</b><br>
+          <ul>
+            <li>Kontak antara air dan kopi sangat krusial.</li>
+            <li>Ukuran gilingan yang terlalu kasar akan memperpendek waktu kontak.</li>
+            <li>Ukuran gilingan yang terlalu halus akan menyebabkan channeling, berlaku untuk metode perkolasi.</li>
+          </ul>
+        </p>
+      </div>
+      <!-- Tambahkan teknik lainnya sesuai kebutuhan -->
     </div>
+
+    <!-- Tombol untuk menampilkan atau menyembunyikan konten -->
+    <span class="show-more-technique" style="font-size: 1em; line-height: 1.5em;">Tampilkan lebih lengkap</span>
   </section>
+
+  <div class="comment-section">
+    <h2>Kolom Komentar</h2>
+    <div class="form-container">
+        <form id="commentForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdxJ282fkPhGqrs8Po_kKTEttyGjcewe6GX7lZZH4z7qW7fNA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            <input type="text" name="entry.279686887" placeholder="Nama" required>
+            <textarea name="entry.911657502" placeholder="Komentar" required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+    </div>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <div id="comments" class="comments-container"></div>
+</div>
+
+  <!-- Anggota Kelompok -->
+  <div>
+    <center><h2>Anggota Kelompok 2 P5 X-1 <br> SMA Negeri 1 Bandung '27</h2>
+    <div class="containermember">
+      <div class="member">
+        <img src="img/Surya-Wiranto.jpg" alt="Foto Anggota 1">
+          <p>Surya Wiranto</p>
+      </div>
+      <div class="member">
+        <img src="img/Bagaskara-Rizki-Pratama.jpg" alt="Foto Anggota 2">
+          <p>Bagaskara Rizki Pratama</p>
+      </div>
+      <div class="member">
+        <img src="img/Abdul-Malik-Sholeh.jpg" alt="Foto Anggota 3">
+          <p>Abdul Malik Sholeh</p>
+      </div>
+      <div class="member">
+        <img src="img/Akhtar-Taura-Alghifari-M.jpg" alt="Foto Anggota 4">
+          <p>Akhtar Taura Alghifari M.</p>
+      </div>
+      <div class="member">
+        <img src="img/Default-Pfp.jpg" alt="Foto Anggota 5">
+          <p>Calysta Aqila Sutisna</p>
+      </div>
+      <div class="member">
+        <img src="img/Dzikri-Nurjaman.jpg" alt="Foto Anggota 6">
+          <p>Dzikri Nurjaman</p>
+      </div>
+      <div class="member">
+        <img src="img/Default-Pfp.jpg" alt="Foto Anggota 7">
+          <p>Madina Rizki Fitriani</p>
+      </div>
+      <div class="member">
+        <img src="img/Default-Pfp.jpg" alt="Foto Anggota 8">
+          <p>Hazel Azwa Fazila</p>
+      </div>
+      <div class="member">
+        <img src="img/Default-Pfp.jpg" alt="Foto Anggota 9">
+          <p>Aliza Mayra Latifa</p>
+      </div>
+    </div>  
+  </div>  
 
   <!-- Footer -->
   <footer>
-    <p>This site is protected by reCAPTCHA and the Google <br> 
+    <p>This site is protected by reCAPTCHA and the Google <br>
     <a href="https://policies.google.com/privacy" style="color: white;" target="_blank">Privacy Policy</a> and 
     <a href="https://policies.google.com/terms" style="color: white;" target="_blank">Terms of Service</a> apply.</p>
     <br>
-    <p>©  2025 [#Server-Name] </p>
-  </footer>
+    <p>©  2025 Kelompok 2 P5 X-1 SMA Negeri 1 Bandung '27 </p>
+    Site hosted by <a href="https://www.sdbsstudio.my.id" target="_blank" style="color: white;">Kemitraan SDBS Studio Development</a>
+  </footer>  
 
   <!-- Menyertakan JavaScript Eksternal -->
   <script src="scripts.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
 </html>
