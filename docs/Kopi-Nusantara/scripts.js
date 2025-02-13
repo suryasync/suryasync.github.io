@@ -102,9 +102,13 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     fetchComments();
+    setInterval(fetchComments, 5000); // Interval setiap 5 detik
 });
 
 let submitted = false;
+let commentsVisible = false;
+let allComments = [];
+
 document.getElementById('commentForm').addEventListener('submit', function(e) {
     setTimeout(function() {
         if (submitted) {
@@ -120,18 +124,69 @@ function fetchComments() {
     fetch('https://script.google.com/macros/s/AKfycbzZyC0l_LvDOI_u7ZbIWc1D_ujT89RY4WqMXLzcKsdnfT_y8YnDpdLlV1EioJScr_Ul1w/exec')
     .then(response => response.json())
     .then(data => {
-        const commentsContainer = document.getElementById('comments');
-        commentsContainer.innerHTML = '';
-        data.comments.forEach(comment => {
-            const commentElement = document.createElement('div');
-            commentElement.className = 'comment';
-            commentElement.innerHTML = `
-                <p><strong>${comment.nama}</strong></p>
-                <p>${comment.komentar}</p>
-            `;
-            commentsContainer.appendChild(commentElement);
-        });
+        allComments = data.comments;
+        updateComments();
+        updateButtons();
     });
 }
 
-setInterval(fetchComments, 5000);
+function updateComments() {
+    const commentsContainer = document.getElementById('comments');
+    commentsContainer.innerHTML = '';
+
+    if (allComments.length > 0) {
+        const firstComment = allComments[0];
+
+        // Tampilkan komentar pertama (pinned comment)
+        const firstCommentElement = document.createElement('div');
+        firstCommentElement.className = 'comment';
+        firstCommentElement.innerHTML = `
+            <p><strong>${firstComment.nama}</strong></p>
+            <p>${firstComment.komentar}</p>
+        `;
+        commentsContainer.appendChild(firstCommentElement);
+
+        if (commentsVisible) {
+            const remainingComments = allComments.slice(1);
+            remainingComments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment';
+                commentElement.innerHTML = `
+                    <p><strong>${comment.nama}</strong></p>
+                    <p>${comment.komentar}</p>
+                `;
+                commentsContainer.appendChild(commentElement);
+            });
+        }
+    }
+}
+
+function updateButtons() {
+    const seeMoreBtn = document.getElementById('seeMoreBtn');
+    const hideCommentsBtn = document.getElementById('hideCommentsBtn');
+
+    if (allComments.length > 1) {
+        if (commentsVisible) {
+            hideCommentsBtn.style.display = 'block';
+            seeMoreBtn.style.display = 'none';
+        } else {
+            hideCommentsBtn.style.display = 'none';
+            seeMoreBtn.style.display = 'block';
+        }
+    } else {
+        seeMoreBtn.style.display = 'none';
+        hideCommentsBtn.style.display = 'none';
+    }
+
+    seeMoreBtn.onclick = function() {
+        commentsVisible = true;
+        updateComments();
+        updateButtons();
+    };
+
+    hideCommentsBtn.onclick = function() {
+        commentsVisible = false;
+        updateComments();
+        updateButtons();
+    };
+}
