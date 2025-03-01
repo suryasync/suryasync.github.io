@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>surya's personal pages</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="https://www.apachefriends.org/images/xampp-logo-ac950edf.svg" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/Surya Wiranto.png" alt="Surya Wiranto" width="80"
+            style="border-radius: 20px;">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Surya Wiranto">Surya Wiranto</h1>
+
+          <p class="title">Student</p>
+        </div>
+
+        <!-- <button class="download-btn">
+          <a href="" download="">
+            <span class="download-text">Download My CV</span>
+            <ion-icon name="document-text" class="download-icon"></ion-icon>
+          </a>
+        </button>
+        -->
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:suryawiranto@sdbsstudio.my.id" class="contact-link">suryawiranto@sdbsstudio.my.id</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Bandung, Indonesia, INA</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://instagram.com/suryawrnto" class="social-link" target="_blank" rel="noopener noreferrer">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://id.linkedin.com/in/surya-wiranto-1a1323321" class="social-link" target="_blank"
+              rel="noopener noreferrer">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>E-Library</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            Hello! I'm a high school student at SMA Negeri 1 Bandung with a passion for technology. 
+            Alongside my studies, I also work as a game developer at Kemitraan SDBS Studio Development, where I hold the position of Head of Development. 
+            My journey in the world of game development has not only allowed me to enhance my skills but also given me the opportunity to earn extra income while doing something I truly love.
+          </p>
+
+          <p>
+            In my free time, I am interested in industrial machinery and enjoy learning about how these powerful machines work. 
+            Additionally, I love going on adventures in nature, exploring new places, and experiencing the thrill of discovering the unknown.
+          </p>
+        </section>
+
+        <!--
+          - service
+        -->
+        <div id="services-container"></div>
+
+        <!--
+          - Skills
+        -->
+        <div id="skills-container"></div>
+
+      </article>
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <div id="resume-container"></div>
+
+      </article>
+
+
+      <!--
+        - #E-Library
+      -->
+
+      <article class="e-library" data-page="e-library">
+
+        <header>
+          <h2 class="h2 article-title">E-Library</h2>
+        </header>
+
+        <div id="e-library-container"></div>
+
+      </article>
+
+
+      <!--
+        - #BLOG
+      -->
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <div id="blog-container"></div>
+
+      </article>
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <div id="contact-container"></div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!--
+      - custom js link
+    -->
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
