@@ -100,7 +100,7 @@
 
   // Komentar
 
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     fetchComments();
     setInterval(fetchComments, 5000); // Interval setiap 5 detik
 });

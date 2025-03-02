@@ -7,28 +7,20 @@
 <section class="contact-form">
 
     <h3 class="h3 form-title">Contact Form</h3>
-    <p id="please-fill-form">Please fill the form to be able press the button.</p>
+    <p id="please-fill-form">Please fill the form to be able to press the button.</p>
 
-    <p id="success-message" style="display: none; color: rgb(32, 154, 32); margin-top: 10px;">
-        Pesan berhasil dikirim! ✅
-    </p>
-
-    <form action="https://formspree.io/f/xdkazqqz" method="POST" class="form" data-form>
-        <input type="hidden" name="_subject" value="Pesan Baru dari Contact Form">
-
+    <form id="contactForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfP4SzXDpbenObZjUGxGOnB2gcXRsAXjMFTOvrfTaTczE74eA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true">
         <div class="input-wrapper">
-            <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-            <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            <input type="text" name="entry.279686887" placeholder="Full name" class="form-input" required>
+            <input type="text" name="entry.916346022" placeholder="Email address" class="form-input" required>
         </div>
-
-        <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-        <button class="form-btn" type="submit" disabled data-form-btn>
+        <textarea name="entry.911657502" placeholder="Your Message" class="form-input" required></textarea> 
+        <button type="submit" class="form-btn">
             <ion-icon name="paper-plane"></ion-icon>
             <span>Send Message</span>
         </button>
-
     </form>
+    
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>      
 
 </section>

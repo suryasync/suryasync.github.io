@@ -189,8 +189,30 @@ function setupFilterDropdown() {
   });
 }
 
-
 // Load all sections and initialize navigation after completion
 document.addEventListener("DOMContentLoaded", function () {
-    loadSections(setupNavigation);
+    loadSections(setupNavigation);    
+
+    fetch('/html_components/contact.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('contact-container').innerHTML = html;
+
+            // Initialize the form after the content is loaded
+            let submitted = false;
+
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                submitted = true; // Set submitted to true here
+
+                // Allow the form to submit to Google Form
+                setTimeout(function() {
+                    if (submitted) {
+                        document.getElementById('contactForm').reset();
+                        alert('Message submitted!');
+                        submitted = false;
+                    }
+                }, 1000);
+            });
+        })
+        .catch(error => console.error('Error loading /html_components/contact.html:', error));
 });
