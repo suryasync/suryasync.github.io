@@ -3,15 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>403 Forbidden</title>
+    <title>404 Not Found</title>
     <style>
+        :root {
+            --bg-gradient-jet: linear-gradient(
+                to bottom right, 
+                hsla(240, 1%, 18%, 0.251) 0%, 
+                hsla(240, 2%, 11%, 0) 100%
+            ), hsl(240, 2%, 13%);
+            --text-gradient-yellow: linear-gradient(
+                to right, 
+                hsl(45, 100%, 72%), 
+                hsl(35, 100%, 68%)
+            );
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--bg-gradient-jet);
+            color: hsl(45, 100%, 72%);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            background: var(--bg-gradient-jet);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
-            margin-top: 0%;
+            font-size: 10rem;
+            margin: 0;
+            background: var(--text-gradient-yellow);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            font-size: 1.5rem;
+            background: var(--text-gradient-yellow);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        a {
+            text-decoration: none;
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+            background: var(--text-gradient-yellow);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        a:hover {
+            background: var(--text-gradient-yellow);
+            color: hsl(240, 2%, 13%);
+            border: 2px solid hsl(240, 2%, 13%);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 6rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            a {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 4rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            a {
+                padding: 0.5rem 0.5rem;
+            }
         }
     </style>
+    <link rel="shortcut icon" href="https://www.apachefriends.org/images/xampp-logo-ac950edf.svg" type="image/x-icon">
 </head>
 <body>
-    <center><h1>403 Forbidden</h1></center>
-    <hr><center>nginx/1.18.0 (Ubuntu)</center>
+    <div class="container">
+        <h1>403</h1>
+        <p>Access to this resource on the server is denied!</p>
+        <a href="mailto:suryawiranto@sdbsstudio.my.id?subject=Reporting%20a%20403%20Forbidden%20Server%20Error&body=Dear%20Team,%0D%0A%0D%0AI%20am%20writing%20to%20report%20an%20error%20I%20encountered%20on%20the%20server.%20When%20trying%20to%20access%20a%20certain%20page,%20I%20received%20a%20403%20Forbidden%20error.%0D%0A%0D%0AThank%20you%20for%20your%20assistance.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]">Contact Us</a>
+    </div>
 </body>
 </html>
