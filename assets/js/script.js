@@ -134,64 +134,64 @@ function setupProjectFilter() {
 }
 
 function setupFilterDropdown() {
-  const filterSelectBox = document.querySelector(".filter-select-box");
-  const filterSelectButton = document.querySelector("[data-select]");
-  const filterOptions = document.querySelectorAll("[data-select-item]");
-  const selectValue = document.querySelector("[data-select-value]");
-  const selectList = document.querySelector(".select-list");
+    const filterSelectBox = document.querySelector(".filter-select-box");
+    const filterSelectButton = document.querySelector("[data-select]");
+    const filterOptions = document.querySelectorAll("[data-select-item]");
+    const selectValue = document.querySelector("[data-select-value]");
+    const selectList = document.querySelector(".select-list");
 
-  if (!filterSelectBox || !filterSelectButton) return; // Prevent errors if elements are missing
+    if (!filterSelectBox || !filterSelectButton) return; // Prevent errors if elements are missing
 
-  // Toggle dropdown on click
-  filterSelectButton.addEventListener("click", function (event) {
-      event.stopPropagation(); // Prevent immediate closing
-      filterSelectBox.classList.toggle("active");
+    // Toggle dropdown on click
+    filterSelectButton.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent immediate closing
+        filterSelectBox.classList.toggle("active");
 
-      // Show or hide the dropdown list
-      if (filterSelectBox.classList.contains("active")) {
-          selectList.style.display = "block";
-      } else {
-          selectList.style.display = "none";
-      }
-  });
+        // Show or hide the dropdown list
+        if (filterSelectBox.classList.contains("active")) {
+            selectList.style.display = "block";
+        } else {
+            selectList.style.display = "none";
+        }
+    });
 
-  // Handle option selection
-  filterOptions.forEach(option => {
-      option.addEventListener("click", function () {
-          const selectedCategory = this.innerText.toLowerCase();
+    // Handle option selection
+    filterOptions.forEach(option => {
+        option.addEventListener("click", function () {
+            const selectedCategory = this.innerText.toLowerCase();
 
-          // Update displayed value
-          if (selectValue) {
-              selectValue.innerText = this.innerText;
-          }
+            // Update displayed value
+            if (selectValue) {
+                selectValue.innerText = this.innerText;
+            }
 
-          // Apply filtering
-          document.querySelectorAll("[data-filter-item]").forEach(item => {
-              if (selectedCategory === "all" || item.dataset.category === selectedCategory) {
-                  item.classList.add("active");
-              } else {
-                  item.classList.remove("active");
-              }
-          });
+            // Apply filtering
+            document.querySelectorAll("[data-filter-item]").forEach(item => {
+                if (selectedCategory === "all" || item.dataset.category === selectedCategory) {
+                    item.classList.add("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
 
-          // Close dropdown after selection
-          filterSelectBox.classList.remove("active");
-          selectList.style.display = "none";
-      });
-  });
+            // Close dropdown after selection
+            filterSelectBox.classList.remove("active");
+            selectList.style.display = "none";
+        });
+    });
 
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function (event) {
-      if (!filterSelectBox.contains(event.target) && !filterSelectButton.contains(event.target)) {
-          filterSelectBox.classList.remove("active");
-          selectList.style.display = "none";
-      }
-  });
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!filterSelectBox.contains(event.target) && !filterSelectButton.contains(event.target)) {
+            filterSelectBox.classList.remove("active");
+            selectList.style.display = "none";
+        }
+    });
 }
 
 // Load all sections and initialize navigation after completion
 document.addEventListener("DOMContentLoaded", function () {
-    loadSections(setupNavigation);    
+    loadSections(setupNavigation);
 
     fetch('/html_components/contact.html')
         .then(response => response.text())
@@ -201,11 +201,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Initialize the form after the content is loaded
             let submitted = false;
 
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
                 submitted = true; // Set submitted to true here
 
                 // Allow the form to submit to Google Form
-                setTimeout(function() {
+                setTimeout(function () {
                     if (submitted) {
                         document.getElementById('contactForm').reset();
                         alert('Message submitted!');
