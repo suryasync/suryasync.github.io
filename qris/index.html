@@ -1,412 +1,445 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QRIS</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg: #f9f9f9;
-      --surface: #ffffff;
-      --text-main: #000000;
-      --text-muted: #666666;
-      --border: #e5e5e5;
-      --border-focus: #000000;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QRIS Dinamis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-      line-height: 1.5;
-    }
-
-    .container {
-      background: var(--surface);
-      width: 100%;
-      max-width: 400px;
-      padding: 40px 30px;
-      border-radius: 2px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      border: 1px solid var(--border);
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .header h1 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-    }
-
-    .header p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 300;
-    }
-
-    .merchant-info {
-      text-align: center;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .merchant-info h2 {
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-    }
-
-    .merchant-info p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-      color: var(--text-muted);
-    }
-
-    input, select {
-      width: 100%;
-      padding: 14px 0;
-      border: none;
-      border-bottom: 1px solid var(--border);
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--text-main);
-      background-color: transparent;
-      transition: all 0.3s ease;
-      font-family: inherit;
-    }
-
-    input::placeholder {
-      color: #cccccc;
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      border-bottom-color: var(--border-focus);
-    }
-
-    select {
-      font-size: 1rem;
-      padding: 12px 0;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-      background-repeat: no-repeat;
-      background-position: right .7em top 50%;
-      background-size: .65em auto;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 16px;
-      background: var(--text-main);
-      color: var(--surface);
-      border: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      margin-top: 16px;
-      transition: background 0.3s ease, transform 0.1s ease;
-    }
-
-    .btn-submit:hover {
-      background: #333333;
-    }
-    
-    .btn-submit:active {
-      transform: scale(0.98);
-    }
-
-    .result {
-      margin-top: 40px;
-      text-align: center;
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .result.active {
-      display: block;
-    }
-
-    .result p {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 20px;
-      color: var(--text-muted);
-    }
-
-    .qr-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      margin: 0 auto;
-      width: fit-content;
-    }
-
-    /* Hilangkan panah up/down di input number */
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none; 
-      margin: 0; 
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div id="merchantInfo" class="merchant-info">
-      <!-- Info merchant akan dirender di sini -->
-      <h2>TOKO SAYA</h2>
-      <p>Lokasi Toko</p>
-    </div>
-
-    <form id="qrisForm">
-      <div class="form-group">
-        <label for="amountInput">Nominal (Rp)</label>
-        <input type="text" id="amountInput" placeholder="0" required autocomplete="off">
-        <input type="hidden" id="realAmountInput">
-      </div>
-
-      <div class="form-group">
-        <label for="serviceFee">Biaya Admin</label>
-        <select id="serviceFee">
-          <option value="n">Tidak Ada</option>
-          <option value="y">Terapkan Biaya</option>
-        </select>
-      </div>
-
-      <div id="serviceFeeOptions" style="display: none;">
-        <div class="form-group">
-          <label for="feeType">Tipe Biaya</label>
-          <select id="feeType">
-            <option value="r">Nominal (Rp)</option>
-            <option value="p">Persentase (%)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="feeValue">Besaran Biaya</label>
-          <input type="number" id="feeValue" placeholder="0">
-        </div>
-      </div>
-
-      <button type="submit" class="btn-submit">Generate QR</button>
-    </form>
-
-    <div class="result" id="resultContainer">
-      <p>Silakan Scan untuk Membayar</p>
-      <div class="qr-container" id="qrcode"></div>
-    </div>
-  </div>
-
-  <script>
-    // ==========================================
-    // MASUKKAN STRING QRIS STATIS ANDA DI SINI
-    // ==========================================
-    const qrisStaticCode = "00020101021126570011ID.DANA.WWW011893600915330410828502093041082850303UMI51440014ID.CO.QRIS.WWW0215ID10222002878060303UMI5204899953033605802ID5914Natnrium Store6012Kota Bandung6105406176304A2A4"; 
-    // ==========================================
-
-    const qrisForm = document.getElementById('qrisForm');
-    const amountInput = document.getElementById('amountInput');
-    const realAmountInput = document.getElementById('realAmountInput');
-    const serviceFee = document.getElementById('serviceFee');
-    const serviceFeeOptions = document.getElementById('serviceFeeOptions');
-    const feeType = document.getElementById('feeType');
-    const feeValue = document.getElementById('feeValue');
-    const qrcodeElement = document.getElementById('qrcode');
-    const merchantInfoElement = document.getElementById('merchantInfo');
-    const resultContainer = document.getElementById('resultContainer');
-
-    // Inisialisasi tampilan awal
-    if (qrisStaticCode && qrisStaticCode.length > 20 && qrisStaticCode !== "ISI_DENGAN_STRING_QRIS_ANDA") {
-      displayMerchantInfo(qrisStaticCode);
-    } else {
-      merchantInfoElement.innerHTML = `
-        <h2 style="color: #000; font-size: 1rem;">Setup Diperlukan</h2>
-        <p style="color: #666; text-transform: none; margin-top: 10px;">
-          Masukkan string teks QRIS statis Anda ke dalam variabel <code>qrisStaticCode</code> di dalam kode HTML.
-        </p>`;
-    }
-
-    // Toggle tampilan opsi biaya admin
-    serviceFee.addEventListener('change', () => {
-      serviceFeeOptions.style.display = serviceFee.value === 'y' ? 'block' : 'none';
-    });
-
-    // Format input menjadi rupiah
-    amountInput.addEventListener('input', formatAmountInput);
-    amountInput.addEventListener('blur', handleEmptyAmountInput);
-    
-    // Submit form untuk generate QR
-    qrisForm.addEventListener('submit', handleFormSubmit);
-
-    function formatAmountInput(e) {
-      let value = e.target.value.replace(/[^\d]/g, "");
-      if (value !== "") {
-        e.target.value = formatRupiah(value);
-        realAmountInput.value = value;
-      } else {
-        realAmountInput.value = 0;
-        e.target.value = "";
-      }
-    }
-
-    function handleEmptyAmountInput(e) {
-      const value = e.target.value;
-      if (!value || value === "0") {
-        e.target.value = "";
-        realAmountInput.value = 0;
-      }
-    }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-
-      if (!qrisStaticCode || qrisStaticCode === "ISI_DENGAN_STRING_QRIS_ANDA") {
-        alert('String QRIS belum disetel dalam kode sumber.');
-        return;
+    <style>
+      :root {
+        --bg: #f9f9f9;
+        --surface: #ffffff;
+        --text-main: #000000;
+        --text-muted: #666666;
+        --border: #e5e5e5;
+        --border-focus: #000000;
       }
 
-      const nominal = realAmountInput.value.trim();
-      if (!nominal || nominal === "0") {
-        alert('Silakan masukkan nominal pembayaran.');
-        return;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
-      const useServiceFee = serviceFee.value;
-      const feeTypeValue = feeType.value;
-      const feeValueAmount = feeValue.value.trim();
-
-      const dynamicQRIS = convertToDynamicQRIS(qrisStaticCode, nominal, useServiceFee, feeTypeValue, feeValueAmount);
-      displayResult(dynamicQRIS);
-    }
-
-    // Mengubah statis menjadi dinamis beserta nominalnya
-    function convertToDynamicQRIS(qris, nominal, useServiceFee, feeType, feeValue) {
-      let tax = '';
-
-      if (useServiceFee === 'y') {
-        tax = feeType === 'r'
-          ? "55020256" + String(feeValue.length).padStart(2, '0') + feeValue
-          : "55020357" + String(feeValue.length).padStart(2, '0') + feeValue;
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg);
+        color: var(--text-main);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        line-height: 1.5;
       }
 
-      qris = qris.slice(0, -4).replace("010211", "010212");
-      const parts = qris.split("5802ID");
-      
-      if (parts.length < 2) return qris;
+      .container {
+        background: var(--surface);
+        width: 100%;
+        max-width: 400px;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        border: 1px solid var(--border);
+      }
 
-      const prefix = parts[0];
-      const suffix = parts[1];
-      const nominalData = "54" + String(nominal.length).padStart(2, '0') + nominal;
+      .merchant-info {
+        text-align: center;
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
 
-      const resultQRIS = `${prefix}${nominalData}${tax || ''}5802ID${suffix}${convertCRC16(prefix + nominalData + tax + "5802ID" + suffix)}`;
-      return resultQRIS;
-    }
+      .merchant-info h2 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
 
-    // Kalkulasi Checksum CRC16 untuk QRIS
-    function convertCRC16(str) {
-      let crc = 0xFFFF;
-      for (let c = 0; c < str.length; c++) {
-        crc ^= str.charCodeAt(c) << 8;
-        for (let i = 0; i < 8; i++) {
-          crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+      .merchant-info p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+        color: var(--text-muted);
+      }
+
+      input {
+        width: 100%;
+        padding: 14px 0;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--text-main);
+        background-color: transparent;
+        transition: all 0.3s ease;
+        font-family: inherit;
+        text-align: center;
+      }
+
+      input::placeholder {
+        color: #cccccc;
+      }
+
+      input:focus {
+        outline: none;
+        border-bottom-color: var(--border-focus);
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 16px;
+        background: var(--text-main);
+        color: var(--surface);
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        margin-top: 8px;
+        border-radius: 4px;
+        transition:
+          background 0.3s ease,
+          transform 0.1s ease;
+      }
+
+      .btn-submit:hover {
+        background: #333333;
+      }
+
+      .btn-submit:active {
+        transform: scale(0.98);
+      }
+
+      .result {
+        text-align: center;
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .result.active {
+        display: block;
+      }
+
+      .qr-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        margin: 0 auto 20px auto;
+        width: fit-content;
+        border-radius: 8px;
+      }
+
+      .display-nominal {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 32px;
+        color: var(--text-main);
+      }
+
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn-action {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        border-radius: 4px;
+        transition:
+          background 0.3s ease,
+          transform 0.1s ease;
+      }
+
+      .btn-action:active {
+        transform: scale(0.98);
+      }
+
+      #btnDownload {
+        background: var(--text-main);
+        color: var(--surface);
+      }
+
+      #btnDownload:hover {
+        background: #333333;
+      }
+
+      #btnBack {
+        background: transparent;
+        color: var(--text-main);
+        border: 1px solid var(--border);
+      }
+
+      #btnBack:hover {
+        background: #f0f0f0;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
-      return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
-    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="merchantInfo" class="merchant-info">
+        <!-- Info merchant otomatis dirender di sini -->
+        <h2>TOKO SAYA</h2>
+        <p>Lokasi Toko</p>
+      </div>
 
-    // Menampilkan QR Code
-    function displayResult(dynamicQRIS) {
-      qrcodeElement.innerHTML = '';
-      new QRCode(qrcodeElement, {
-        text: dynamicQRIS,
-        width: 200,
-        height: 200,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.M
+      <!-- Form Input Nominal -->
+      <form id="qrisForm">
+        <div class="form-group">
+          <label for="amountInput">Nominal Pembayaran (Rp)</label>
+          <input
+            type="text"
+            id="amountInput"
+            placeholder="0"
+            required
+            autocomplete="off"
+          />
+          <input type="hidden" id="realAmountInput" />
+        </div>
+
+        <button type="submit" class="btn-submit">Generate QR</button>
+      </form>
+
+      <!-- Hasil Generate (QR & Tombol) -->
+      <div class="result" id="resultContainer">
+        <div class="qr-container" id="qrcode"></div>
+        <div id="displayNominal" class="display-nominal">Rp 0</div>
+
+        <div class="action-buttons">
+          <button type="button" id="btnDownload" class="btn-action">
+            Download QRIS
+          </button>
+          <button type="button" id="btnBack" class="btn-action">
+            Buat QRIS Baru
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ==========================================
+      // MASUKKAN STRING QRIS STATIS ANDA DI SINI
+      // ==========================================
+      const qrisStaticCode =
+        "00020101021126570011ID.DANA.WWW011893600915330410828502093041082850303UMI51440014ID.CO.QRIS.WWW0215ID10222002878060303UMI5204899953033605802ID5914Natnrium Store6012Kota Bandung6105406176304A2A4";
+      // ==========================================
+
+      const qrisForm = document.getElementById("qrisForm");
+      const amountInput = document.getElementById("amountInput");
+      const realAmountInput = document.getElementById("realAmountInput");
+      const qrcodeElement = document.getElementById("qrcode");
+      const merchantInfoElement = document.getElementById("merchantInfo");
+      const resultContainer = document.getElementById("resultContainer");
+      const displayNominal = document.getElementById("displayNominal");
+      const btnDownload = document.getElementById("btnDownload");
+      const btnBack = document.getElementById("btnBack");
+
+      // Inisialisasi tampilan awal info merchant
+      if (
+        qrisStaticCode &&
+        qrisStaticCode.length > 20 &&
+        qrisStaticCode !== "ISI_DENGAN_STRING_QRIS_ANDA"
+      ) {
+        displayMerchantInfo(qrisStaticCode);
+      } else {
+        merchantInfoElement.innerHTML = `
+        <h2 style="color: #000; font-size: 1rem;">Setup Diperlukan</h2>
+        <p style="color: #666; text-transform: none; margin-top: 10px;">
+          Masukkan string teks QRIS statis Anda ke dalam variabel <code>qrisStaticCode</code>.
+        </p>`;
+      }
+
+      // Format input menjadi rupiah
+      amountInput.addEventListener("input", formatAmountInput);
+      amountInput.addEventListener("blur", handleEmptyAmountInput);
+
+      // Submit form untuk generate QR
+      qrisForm.addEventListener("submit", handleFormSubmit);
+
+      // Tombol Kembali
+      btnBack.addEventListener("click", function () {
+        resultContainer.classList.remove("active");
+        qrisForm.style.display = "block";
+        amountInput.value = "";
+        realAmountInput.value = 0;
+        amountInput.focus();
       });
-      resultContainer.classList.add('active');
-      
-      // Scroll perlahan ke arah QR code agar terlihat jelas di HP
-      setTimeout(() => {
-        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }, 100);
-    }
 
-    // Ekstrak nama dan kota merchant dari string QRIS
-    function extractMerchantInfo(qrisCode) {
-      const merchantNameRegex = /59(\d{2})([^\d]{2,})/;
-      const merchantLocationRegex = /60(\d{2})([^\d]{2,})/;
+      // Tombol Download
+      btnDownload.addEventListener("click", function () {
+        const canvas = qrcodeElement.querySelector("canvas");
+        if (canvas) {
+          const url = canvas.toDataURL("image/png");
+          const a = document.createElement("a");
+          a.href = url;
+          // Nama file berdasarkan nominal
+          a.download = `QRIS-${realAmountInput.value}.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          alert("QR Code belum siap, silakan coba lagi.");
+        }
+      });
 
-      const nameMatch = qrisCode.match(merchantNameRegex);
-      const locationMatch = qrisCode.match(merchantLocationRegex);
+      function formatAmountInput(e) {
+        let value = e.target.value.replace(/[^\d]/g, "");
+        if (value !== "") {
+          e.target.value = formatRupiah(value);
+          realAmountInput.value = value;
+        } else {
+          realAmountInput.value = 0;
+          e.target.value = "";
+        }
+      }
 
-      const merchantName = nameMatch ? nameMatch[2].substring(0, parseInt(nameMatch[1], 10)) : "Nama Merchant";
-      const merchantLocation = locationMatch ? locationMatch[2].substring(0, parseInt(locationMatch[1], 10)) : "Lokasi Merchant";
+      function handleEmptyAmountInput(e) {
+        const value = e.target.value;
+        if (!value || value === "0") {
+          e.target.value = "";
+          realAmountInput.value = 0;
+        }
+      }
 
-      return { name: merchantName, location: merchantLocation };
-    }
+      function handleFormSubmit(e) {
+        e.preventDefault();
 
-    // Update UI dengan info merchant dari string
-    function displayMerchantInfo(qrisCode) {
-      const merchantInfo = extractMerchantInfo(qrisCode);
-      merchantInfoElement.innerHTML = `
+        if (
+          !qrisStaticCode ||
+          qrisStaticCode === "ISI_DENGAN_STRING_QRIS_ANDA"
+        ) {
+          alert("String QRIS belum disetel dalam kode sumber.");
+          return;
+        }
+
+        const nominal = realAmountInput.value.trim();
+        if (!nominal || nominal === "0") {
+          alert("Silakan masukkan nominal pembayaran.");
+          return;
+        }
+
+        // Hide form & set nominal text
+        qrisForm.style.display = "none";
+        displayNominal.innerText = `Rp ${formatRupiah(nominal)}`;
+
+        const dynamicQRIS = convertToDynamicQRIS(qrisStaticCode, nominal);
+        displayResult(dynamicQRIS);
+      }
+
+      // Mengubah statis menjadi dinamis beserta nominalnya
+      function convertToDynamicQRIS(qris, nominal) {
+        qris = qris.slice(0, -4).replace("010211", "010212");
+        const parts = qris.split("5802ID");
+
+        if (parts.length < 2) return qris;
+
+        const prefix = parts[0];
+        const suffix = parts[1];
+        const nominalData =
+          "54" + String(nominal.length).padStart(2, "0") + nominal;
+
+        const resultQRIS = `${prefix}${nominalData}5802ID${suffix}${convertCRC16(prefix + nominalData + "5802ID" + suffix)}`;
+        return resultQRIS;
+      }
+
+      // Kalkulasi Checksum CRC16 untuk QRIS
+      function convertCRC16(str) {
+        let crc = 0xffff;
+        for (let c = 0; c < str.length; c++) {
+          crc ^= str.charCodeAt(c) << 8;
+          for (let i = 0; i < 8; i++) {
+            crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+          }
+        }
+        return (crc & 0xffff).toString(16).toUpperCase().padStart(4, "0");
+      }
+
+      // Menampilkan QR Code
+      function displayResult(dynamicQRIS) {
+        qrcodeElement.innerHTML = "";
+        new QRCode(qrcodeElement, {
+          text: dynamicQRIS,
+          width: 220,
+          height: 220,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.M,
+        });
+        resultContainer.classList.add("active");
+      }
+
+      // Ekstrak nama dan kota merchant dari string QRIS
+      function extractMerchantInfo(qrisCode) {
+        const merchantNameRegex = /59(\d{2})([^\d]{2,})/;
+        const merchantLocationRegex = /60(\d{2})([^\d]{2,})/;
+
+        const nameMatch = qrisCode.match(merchantNameRegex);
+        const locationMatch = qrisCode.match(merchantLocationRegex);
+
+        const merchantName = nameMatch
+          ? nameMatch[2].substring(0, parseInt(nameMatch[1], 10))
+          : "Nama Merchant";
+        const merchantLocation = locationMatch
+          ? locationMatch[2].substring(0, parseInt(locationMatch[1], 10))
+          : "Lokasi Merchant";
+
+        return { name: merchantName, location: merchantLocation };
+      }
+
+      // Update UI dengan info merchant dari string
+      function displayMerchantInfo(qrisCode) {
+        const merchantInfo = extractMerchantInfo(qrisCode);
+        merchantInfoElement.innerHTML = `
         <h2>${merchantInfo.name}</h2>
         <p>${merchantInfo.location}</p>
       `;
-    }
+      }
 
-    function formatRupiah(number) {
-      return new Intl.NumberFormat('id-ID').format(number);
-    }
-  </script>
-</body>
+      function formatRupiah(number) {
+        return new Intl.NumberFormat("id-ID").format(number);
+      }
+    </script>
+  </body>
 </html>
