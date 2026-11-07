@@ -1,23 +1,24 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QRIS | Surya</title>
+    <title>QRIS | Surya Wiranto</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
       :root {
-        --bg: #f9f9f9;
+        --bg: #f4f5f7;
         --surface: #ffffff;
-        --text-main: #000000;
-        --text-muted: #666666;
-        --border: #e5e5e5;
-        --border-focus: #000000;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border: #e5e7eb;
+        --primary: #ea2b2b;
+        --primary-hover: #c91c1c;
       }
 
       * {
@@ -34,35 +35,54 @@
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        padding: 20px;
+        padding: 16px;
         line-height: 1.5;
       }
 
       .container {
         background: var(--surface);
         width: 100%;
-        max-width: 400px;
-        padding: 40px 30px;
-        border-radius: 8px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        max-width: 420px;
+        padding: 32px 24px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
         border: 1px solid var(--border);
+      }
+
+      .qris-header-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .qris-badge {
+        background-color: #ed1c24;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 0.85rem;
+        padding: 4px 12px;
+        border-radius: 4px;
+        letter-spacing: 0.1em;
       }
 
       .merchant-info {
         text-align: center;
-        margin-bottom: 32px;
-        padding-bottom: 24px;
-        border-bottom: 1px solid var(--border);
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed var(--border);
       }
 
       .merchant-info h2 {
-        font-size: 1.5rem;
-        font-weight: 500;
-        letter-spacing: -0.03em;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text-main);
       }
 
       .merchant-info p {
-        font-size: 0.8rem;
+        font-size: 0.825rem;
         color: var(--text-muted);
         margin-top: 4px;
         text-transform: uppercase;
@@ -76,56 +96,58 @@
       label {
         display: block;
         font-size: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 8px;
         color: var(--text-muted);
+        text-align: center;
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       input {
         width: 100%;
-        padding: 14px 0;
-        border: none;
-        border-bottom: 1px solid var(--border);
+        padding: 12px 16px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
         font-size: 1.5rem;
-        font-weight: 400;
+        font-weight: 600;
         color: var(--text-main);
-        background-color: transparent;
-        transition: all 0.3s ease;
+        background-color: #fafafa;
+        transition: all 0.2s ease;
         font-family: inherit;
         text-align: center;
       }
 
-      input::placeholder {
-        color: #cccccc;
-      }
-
       input:focus {
         outline: none;
-        border-bottom-color: var(--border-focus);
+        border-color: #111827;
+        background-color: #ffffff;
       }
 
       .btn-submit {
         width: 100%;
-        padding: 16px;
+        padding: 14px;
         background: var(--text-main);
         color: var(--surface);
         border: none;
-        font-size: 0.85rem;
-        font-weight: 500;
+        font-size: 0.9rem;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.05em;
         cursor: pointer;
-        margin-top: 8px;
-        border-radius: 4px;
-        transition:
-          background 0.3s ease,
-          transform 0.1s ease;
+        border-radius: 10px;
+        transition: all 0.2s ease;
       }
 
       .btn-submit:hover {
-        background: #333333;
+        background: #374151;
       }
 
       .btn-submit:active {
@@ -135,51 +157,54 @@
       .result {
         text-align: center;
         display: none;
-        animation: fadeIn 0.5s ease;
+        animation: fadeIn 0.4s ease-out;
       }
 
       .result.active {
         display: block;
       }
 
+      .qr-card {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
       .qr-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 24px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        margin: 0 auto 20px auto;
+        padding: 12px;
+        background: #ffffff;
+        margin: 0 auto 16px auto;
         width: fit-content;
-        border-radius: 8px;
       }
 
       .display-nominal {
-        font-size: 1.75rem;
-        font-weight: 600;
-        margin-bottom: 32px;
+        font-size: 1.5rem;
+        font-weight: 700;
         color: var(--text-main);
       }
 
       .action-buttons {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
       }
 
       .btn-action {
         width: 100%;
         padding: 14px;
         border: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
         cursor: pointer;
-        border-radius: 4px;
-        transition:
-          background 0.3s ease,
-          transform 0.1s ease;
+        border-radius: 10px;
+        transition: all 0.2s ease;
       }
 
       .btn-action:active {
@@ -187,180 +212,232 @@
       }
 
       #btnDownload {
-        background: var(--text-main);
-        color: var(--surface);
+        background: var(--primary);
+        color: #ffffff;
       }
 
       #btnDownload:hover {
-        background: #333333;
+        background: var(--primary-hover);
       }
 
       #btnBack {
-        background: transparent;
+        background: #f3f4f6;
         color: var(--text-main);
         border: 1px solid var(--border);
       }
 
       #btnBack:hover {
-        background: #f0f0f0;
+        background: #e5e7eb;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+        z-index: 1000;
+        padding: 16px;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-card {
+        background: #ffffff;
+        padding: 24px;
+        border-radius: 14px;
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transform: scale(0.95);
+        transition: transform 0.2s ease;
+      }
+
+      .modal-overlay.active .modal-card {
+        transform: scale(1);
+      }
+
+      .modal-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text-main);
+      }
+
+      .modal-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+      }
+
+      .modal-btn {
+        width: 100%;
+        padding: 10px;
+        background: var(--text-main);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
       }
 
       @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(10px);
+          transform: translateY(8px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
+
+      @media (max-width: 360px) {
+        .container {
+          padding: 24px 16px;
+        }
+        .display-nominal {
+          font-size: 1.3rem;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <div id="merchantInfo" class="merchant-info">
-        <!-- Info merchant otomatis dirender di sini -->
-        <h2>TOKO SAYA</h2>
-        <p>Lokasi Toko</p>
+      <div class="qris-header-badge">
+        <span class="qris-badge">QRIS</span>
       </div>
 
-      <!-- Form Input Nominal -->
+      <div id="merchantInfo" class="merchant-info">
+        <h2>SURYA WIRANTO</h2>
+        <p>PENGELASAN & BUBUT • BANDUNG</p>
+      </div>
+
       <form id="qrisForm">
         <div class="form-group">
-          <label for="amountInput">Nominal Pembayaran (Rp)</label>
-          <input
-            type="text"
-            id="amountInput"
-            placeholder="0"
-            required
-            autocomplete="off"
-          />
-          <input type="hidden" id="realAmountInput" />
+          <label for="amountInput">Payment Amount (IDR)</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="amountInput"
+              placeholder="0"
+              required
+              autocomplete="off"
+              inputmode="numeric"
+            />
+          </div>
+          <input type="hidden" id="realAmountInput" value="0" />
         </div>
 
-        <button type="submit" class="btn-submit">Generate QR</button>
+        <button type="submit" class="btn-submit">Generate QR Code</button>
       </form>
 
-      <!-- Hasil Generate (QR & Tombol) -->
       <div class="result" id="resultContainer">
-        <div class="qr-container" id="qrcode"></div>
-        <div id="displayNominal" class="display-nominal">Rp 0</div>
+        <div class="qr-card">
+          <div class="qr-container" id="qrcode"></div>
+          <div id="displayNominal" class="display-nominal">Rp 0</div>
+        </div>
 
         <div class="action-buttons">
           <button type="button" id="btnDownload" class="btn-action">
             Download QRIS
           </button>
           <button type="button" id="btnBack" class="btn-action">
-            Buat QRIS Baru
+            Create New Amount
           </button>
         </div>
       </div>
     </div>
 
+    <div class="modal-overlay" id="customModal">
+      <div class="modal-card">
+        <h3 id="modalTitle">Notice</h3>
+        <p id="modalMessage">Message text here</p>
+        <button type="button" class="modal-btn" id="modalCloseBtn">OK</button>
+      </div>
+    </div>
+
     <script>
-      // ==========================================
-      // MASUKKAN STRING QRIS STATIS ANDA DI SINI
-      // ==========================================
       const qrisStaticCode =
         "00020101021126610014COM.GO-JEK.WWW01189360091434247698490210G4247698490303UMI51440014ID.CO.QRIS.WWW0215ID10265726030780303UMI5204769253033605802ID5925SURYA WIRANTO, Pengelasan6007BANDUNG61054061262070703A0163048A63";
-      // ==========================================
+
+      const DISPLAY_MERCHANT_NAME = "SURYA WIRANTO";
+      const DISPLAY_SUBTITLE = "PENGELASAN & BUBUT • BANDUNG";
 
       const qrisForm = document.getElementById("qrisForm");
       const amountInput = document.getElementById("amountInput");
       const realAmountInput = document.getElementById("realAmountInput");
       const qrcodeElement = document.getElementById("qrcode");
-      const merchantInfoElement = document.getElementById("merchantInfo");
       const resultContainer = document.getElementById("resultContainer");
       const displayNominal = document.getElementById("displayNominal");
       const btnDownload = document.getElementById("btnDownload");
       const btnBack = document.getElementById("btnBack");
 
-      // Inisialisasi tampilan awal info merchant
-      if (
-        qrisStaticCode &&
-        qrisStaticCode.length > 20 &&
-        qrisStaticCode !== "ISI_DENGAN_STRING_QRIS_ANDA"
-      ) {
-        displayMerchantInfo(qrisStaticCode);
-      } else {
-        merchantInfoElement.innerHTML = `
-        <h2 style="color: #000; font-size: 1rem;">Setup Diperlukan</h2>
-        <p style="color: #666; text-transform: none; margin-top: 10px;">
-          Masukkan string teks QRIS statis Anda ke dalam variabel <code>qrisStaticCode</code>.
-        </p>`;
+      const customModal = document.getElementById("customModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalMessage = document.getElementById("modalMessage");
+      const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+      function showModal(title, message) {
+        modalTitle.innerText = title;
+        modalMessage.innerText = message;
+        customModal.classList.add("active");
       }
 
-      // Format input menjadi rupiah
-      amountInput.addEventListener("input", formatAmountInput);
-      amountInput.addEventListener("blur", handleEmptyAmountInput);
+      modalCloseBtn.addEventListener("click", () => {
+        customModal.classList.remove("active");
+      });
 
-      // Submit form untuk generate QR
+      amountInput.addEventListener("input", function (e) {
+        let cleanValue = e.target.value.replace(/[^\d]/g, "");
+        if (cleanValue !== "") {
+          e.target.value = formatRupiah(cleanValue);
+          realAmountInput.value = cleanValue;
+        } else {
+          e.target.value = "";
+          realAmountInput.value = "0";
+        }
+      });
+
+      amountInput.addEventListener("blur", function (e) {
+        if (!e.target.value || e.target.value === "0") {
+          e.target.value = "";
+          realAmountInput.value = "0";
+        }
+      });
+
       qrisForm.addEventListener("submit", handleFormSubmit);
 
-      // Tombol Kembali
       btnBack.addEventListener("click", function () {
         resultContainer.classList.remove("active");
         qrisForm.style.display = "block";
         amountInput.value = "";
-        realAmountInput.value = 0;
+        realAmountInput.value = "0";
         amountInput.focus();
       });
 
-      // Tombol Download
-      btnDownload.addEventListener("click", function () {
-        const canvas = qrcodeElement.querySelector("canvas");
-        if (canvas) {
-          const url = canvas.toDataURL("image/png");
-          const a = document.createElement("a");
-          a.href = url;
-          // Nama file berdasarkan nominal
-          a.download = `QRIS-${realAmountInput.value}.png`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } else {
-          alert("QR Code belum siap, silakan coba lagi.");
-        }
-      });
-
-      function formatAmountInput(e) {
-        let value = e.target.value.replace(/[^\d]/g, "");
-        if (value !== "") {
-          e.target.value = formatRupiah(value);
-          realAmountInput.value = value;
-        } else {
-          realAmountInput.value = 0;
-          e.target.value = "";
-        }
-      }
-
-      function handleEmptyAmountInput(e) {
-        const value = e.target.value;
-        if (!value || value === "0") {
-          e.target.value = "";
-          realAmountInput.value = 0;
-        }
-      }
+      btnDownload.addEventListener("click", generateProfessionalCard);
 
       function handleFormSubmit(e) {
         e.preventDefault();
 
-        if (
-          !qrisStaticCode ||
-          qrisStaticCode === "ISI_DENGAN_STRING_QRIS_ANDA"
-        ) {
-          alert("String QRIS belum disetel dalam kode sumber.");
-          return;
-        }
-
         const nominal = realAmountInput.value.trim();
         if (!nominal || nominal === "0") {
-          alert("Silakan masukkan nominal pembayaran.");
+          showModal("Invalid Amount", "Please enter a valid payment amount.");
           return;
         }
 
-        // Hide form & set nominal text
         qrisForm.style.display = "none";
         displayNominal.innerText = `Rp ${formatRupiah(nominal)}`;
 
@@ -368,7 +445,6 @@
         displayResult(dynamicQRIS);
       }
 
-      // Mengubah statis menjadi dinamis beserta nominalnya
       function convertToDynamicQRIS(qris, nominal) {
         qris = qris.slice(0, -4).replace("010211", "010212");
         const parts = qris.split("5802ID");
@@ -384,7 +460,6 @@
         return resultQRIS;
       }
 
-      // Kalkulasi Checksum CRC16 untuk QRIS
       function convertCRC16(str) {
         let crc = 0xffff;
         for (let c = 0; c < str.length; c++) {
@@ -396,13 +471,12 @@
         return (crc & 0xffff).toString(16).toUpperCase().padStart(4, "0");
       }
 
-      // Menampilkan QR Code
       function displayResult(dynamicQRIS) {
         qrcodeElement.innerHTML = "";
         new QRCode(qrcodeElement, {
           text: dynamicQRIS,
-          width: 220,
-          height: 220,
+          width: 200,
+          height: 200,
           colorDark: "#000000",
           colorLight: "#ffffff",
           correctLevel: QRCode.CorrectLevel.M,
@@ -410,35 +484,99 @@
         resultContainer.classList.add("active");
       }
 
-      // Ekstrak nama dan kota merchant dari string QRIS
-      function extractMerchantInfo(qrisCode) {
-        const merchantNameRegex = /59(\d{2})([^\d]{2,})/;
-        const merchantLocationRegex = /60(\d{2})([^\d]{2,})/;
-
-        const nameMatch = qrisCode.match(merchantNameRegex);
-        const locationMatch = qrisCode.match(merchantLocationRegex);
-
-        const merchantName = nameMatch
-          ? nameMatch[2].substring(0, parseInt(nameMatch[1], 10))
-          : "Nama Merchant";
-        const merchantLocation = locationMatch
-          ? locationMatch[2].substring(0, parseInt(locationMatch[1], 10))
-          : "Lokasi Merchant";
-
-        return { name: merchantName, location: merchantLocation };
-      }
-
-      // Update UI dengan info merchant dari string
-      function displayMerchantInfo(qrisCode) {
-        const merchantInfo = extractMerchantInfo(qrisCode);
-        merchantInfoElement.innerHTML = `
-        <h2>${merchantInfo.name}</h2>
-        <p>${merchantInfo.location}</p>
-      `;
-      }
-
       function formatRupiah(number) {
         return new Intl.NumberFormat("id-ID").format(number);
+      }
+
+      function generateProfessionalCard() {
+        const sourceCanvas = qrcodeElement.querySelector("canvas");
+        const sourceImg = qrcodeElement.querySelector("img");
+
+        if (!sourceCanvas && !sourceImg) {
+          showModal("Error", "QR Code is not ready yet, please try again.");
+          return;
+        }
+
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const scale = 2;
+        const width = 450 * scale;
+        const height = 620 * scale;
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = "#ED1C24";
+        ctx.fillRect(0, 0, width, 24 * scale);
+
+        ctx.fillStyle = "#ED1C24";
+        ctx.font = `bold ${24 * scale}px Inter, sans-serif`;
+        ctx.textAlign = "center";
+        ctx.fillText("QRIS", width / 2, 60 * scale);
+
+        ctx.fillStyle = "#6B7280";
+        ctx.font = `${10 * scale}px Inter, sans-serif`;
+        ctx.fillText("NMID: ID1026572603078", width / 2, 76 * scale);
+
+        ctx.strokeStyle = "#E5E7EB";
+        ctx.lineWidth = 1 * scale;
+        ctx.beginPath();
+        ctx.moveTo(30 * scale, 95 * scale);
+        ctx.lineTo(width - 30 * scale, 95 * scale);
+        ctx.stroke();
+
+        ctx.fillStyle = "#111827";
+        ctx.font = `bold ${22 * scale}px Inter, sans-serif`;
+        ctx.fillText(DISPLAY_MERCHANT_NAME, width / 2, 135 * scale);
+
+        ctx.fillStyle = "#6B7280";
+        ctx.font = `${12 * scale}px Inter, sans-serif`;
+        ctx.fillText(DISPLAY_SUBTITLE, width / 2, 155 * scale);
+
+        const qrSize = 240 * scale;
+        const qrX = (width - qrSize) / 2;
+        const qrY = 180 * scale;
+
+        const qrImageSource = sourceCanvas ? sourceCanvas : sourceImg;
+        ctx.drawImage(qrImageSource, qrX, qrY, qrSize, qrSize);
+
+        const nominalY = 445 * scale;
+        const boxX = 40 * scale;
+        const boxW = width - 80 * scale;
+        const boxH = 75 * scale;
+
+        ctx.fillStyle = "#F9FAFB";
+        ctx.fillRect(boxX, nominalY, boxW, boxH);
+        ctx.strokeStyle = "#E5E7EB";
+        ctx.lineWidth = 1.5 * scale;
+        ctx.strokeRect(boxX, nominalY, boxW, boxH);
+
+        ctx.fillStyle = "#6B7280";
+        ctx.font = `${11 * scale}px Inter, sans-serif`;
+        ctx.fillText("TOTAL PAYMENT", width / 2, nominalY + 26 * scale);
+
+        ctx.fillStyle = "#111827";
+        ctx.font = `bold ${22 * scale}px Inter, sans-serif`;
+        ctx.fillText(
+          `Rp ${formatRupiah(realAmountInput.value)}`,
+          width / 2,
+          nominalY + 56 * scale
+        );
+
+        ctx.fillStyle = "#9CA3AF";
+        ctx.font = `bold ${11 * scale}px Inter, sans-serif`;
+        ctx.fillText("Issued by: 93600914 | Version: v0.0.2026.06.11", width / 2, height - 25 * scale);
+
+        const url = canvas.toDataURL("image/png");
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `QRIS-SURYA-WIRANTO-Rp${realAmountInput.value}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
     </script>
   </body>
